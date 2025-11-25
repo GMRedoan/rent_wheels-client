@@ -53,7 +53,7 @@ const Login = () => {
             <title>Login</title>
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-center">
-                    <h1 className="text-5xl font-bold">LogIn Now in RentWheels</h1>
+                    <h1 className="text-5xl font-bold">LogIn Now in <span className='text-primary'>RentWheels</span></h1>
                     <p className="py-6 text-accent">
                         Enter your account to continue your posting and rent.
                     </p>

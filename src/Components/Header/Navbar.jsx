@@ -2,6 +2,7 @@ import { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../provider/authContext';
 import Swal from 'sweetalert2';
+import logo from '/logo.png'
 
 const Navbar = () => {
     const { user, logout } = use(AuthContext)
@@ -42,9 +43,9 @@ const Navbar = () => {
                         </div>
                     </ul>
                 </div>
-                <Link to='/' className='flex '>
-                    {/* <img className='w-[78px]' src='' alt="" /> */}
-                    <p className="mt-2 md:mt-0 md:text-3xl font-black">Toy Topia</p>
+                <Link to='/' className='flex justify-center items-center'>
+                    <img className='w-[82px]' src={logo} alt="" />
+                    <p className="mt-2 md:mt-0 md:text-3xl font-bold">Rent<span className='font-normal text-primary text-2xl'>wheels</span></p>
                 </Link>
             </div>
             <nav className="navbar-center hidden lg:flex">
@@ -55,12 +56,21 @@ const Navbar = () => {
                     <div className='flex items-center gap-1 text-xl'>
                         <NavLink to='addCar'><li>Add Car</li></NavLink>
                     </div>
-                    {/* <div className='flex items-center gap-1 text-xl'>
-                        <NavLink to=''><li>Blog</li></NavLink>
-                    </div>
                     <div className='flex items-center gap-1 text-xl'>
-                        <NavLink to=''><li>Contact</li></NavLink>
-                    </div> */}
+                        <NavLink to='allCars'><li>Browse Cars</li></NavLink>
+                    </div>
+                    {
+                        user &&
+                        <div className='flex items-center gap-1 text-xl'>
+                            <NavLink to='myListing'><li>My Listing</li></NavLink>
+                        </div>
+                    }
+                    {
+                        user &&
+                        <div className='flex items-center gap-1 text-xl'>
+                            <NavLink to='myBooking'><li>My Booking</li></NavLink>
+                        </div>
+                    }
                 </ul>
             </nav>
             {
@@ -76,7 +86,7 @@ const Navbar = () => {
 
                         <ul
                             tabIndex={0}
-                            className="dropdown-content menu bg-base-100 rounded-xl shadow-lg border border-primary w-56 p-4">
+                            className="dropdown-content menu bg-base-100 rounded-xl shadow-lg border border-primary w-56 pb-4">
                             <li className="pointer-events-none!">
                                 <p className="font-semibold text-lg text-gray-800">{user.displayName}
                                 </p>

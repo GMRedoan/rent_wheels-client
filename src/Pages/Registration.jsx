@@ -75,7 +75,7 @@ const Registration = () => {
             <title>Registration</title>
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-center">
-                    <h1 className="text-5xl font-bold">Create Your Account Now !</h1>
+                    <h1 className="text-5xl font-bold">Create Your <span className='text-primary'>Account</span> Now !</h1>
                     <p className="py-6 text-accent">
                         Register now and begin your Journey.
                     </p>
