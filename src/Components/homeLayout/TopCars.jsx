@@ -21,7 +21,7 @@ const TopCars = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="border border-gray-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition transform hover:-translate-y-2">
+                    <div className="border border-gray-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition transform duration-300 hover:-translate-y-3">
                         <div className="h-44 md:h-48 w-full overflow-hidden">
                             <img
                                 src="https://i.ibb.co.com/sJMjr1FB/2025-toyota-camry-xse-awd-123-66993cc94cc40.jpg"
@@ -48,7 +48,7 @@ const TopCars = () => {
                         </div>
                     </div>
 
-                    <div className="border rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition transform hover:-translate-y-2">
+                    <div className="border rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition transform duration-300 hover:-translate-y-3">
                         <div className="relative h-44 md:h-48 w-full overflow-hidden">
                             <img
                                 src="https://i.ibb.co.com/DPymPPdk/a-Aur-RPIq-RLda-Bo-A-Nissan-X-Trail2025exteriorfrontthreequarterviewdriving.jpg"
@@ -74,7 +74,7 @@ const TopCars = () => {
                         </div>
                     </div>
 
-                    <div className="border rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition transform hover:-translate-y-2">
+                    <div className="border rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition transform duration-300 hover:-translate-y-3">
                         <div className="relative h-44 md:h-48 w-full overflow-hidden">
                             <img
                                 src="https://i.ibb.co.com/prjwq1TL/2024-city-1-77eb-wm.png"

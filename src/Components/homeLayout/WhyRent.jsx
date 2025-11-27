@@ -27,9 +27,9 @@ const WhyRent = () => {
         <p className="text-gray-800 mt-6">
           We go beyond just renting cars — we deliver a premium driving experience, built around trust, comfort, and style.
         </p>
-        <Link to='/aboutUs' className="btn btn-primary text-white mt-10 hover:bg-secondary">Learn More About Us
+         <Link to='/aboutUs' className="btn btn-primary text-white mt-10 hover:bg-secondary">Learn More About Us
         </Link>
-      </div>
+       </div>
 
       <div className="md:w-1/2">
         <img

@@ -1,8 +1,55 @@
-import React from "react";
+import { FaCar, FaComments, FaFlag, FaHeart } from "react-icons/fa";
 
 const Feedback = () => {
   return (
-    <section className="py-15 bg-base-200">
+<div className="pt-5 pb-15 bg-base-200">
+      <section className="py-20 mb-20 bg-gray-200">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center px-6">
+          <div className="group transition duration-300 cursor-pointer">
+          <FaHeart className="text-6xl mx-auto text-accent group-hover:text-primary transition duration-300" />
+          <h3 className="text-3xl font-semibold text-gray-700 group-hover:text-primary transition duration-300 mt-4">
+            5567
+          </h3>
+          <p className="text-gray-500 text-sm tracking-widest mt-1 group-hover:text-primary  transition duration-300">
+            HAPPY CUSTOMERS
+          </p>
+        </div>
+
+        <div className="group transition duration-300 cursor-pointer">
+          <FaCar className="text-6xl mx-auto text-gray-500 group-hover:text-primary  transition duration-300" />
+          <h3 className="text-3xl font-semibold text-gray-700 group-hover:text-primary  transition duration-300 mt-4">
+            657
+          </h3>
+          <p className="text-gray-500 text-sm tracking-widest mt-1 group-hover:text-primary  transition duration-300">
+            TOTAL CAR COUNT
+          </p>
+        </div>
+
+        <div className="group transition duration-300 cursor-pointer">
+          <FaFlag className="text-6xl mx-auto text-gray-500 group-hover:text-primary  transition duration-300" />
+          <h3 className="text-3xl font-semibold text-gray-700 group-hover:text-primary  transition duration-300 mt-4">
+            1,255,657
+          </h3>
+          <p className="text-gray-500 text-sm tracking-widest mt-1 group-hover:text-primary  transition duration-300">
+            TOTAL KM/MIL
+          </p>
+        </div>
+
+        <div className="group transition duration-300 cursor-pointer">
+          <FaComments className="text-6xl mx-auto text-gray-500 group-hover:text-primary  transition duration-300" />
+          <h3 className="text-3xl font-semibold text-gray-700 group-hover:text-primary  transition duration-300 mt-4">
+            1255
+          </h3>
+          <p className="text-gray-500 text-sm tracking-widest mt-1 group-hover:text-primary  transition duration-300">
+            CALL CENTER SOLUTIONS
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
+      <section>
       <div className="text-center mb-16 px-4">
         <h2 className="text-5xl font-bold text-neutral">
           Loved by Hundreds of <span className="text-primary">Happy Clients</span>
@@ -92,7 +139,9 @@ const Feedback = () => {
         Real stories from satisfied travelers and VIP clients.
       </p>
     </section>
-  );
+
+</div> 
+ );
 };
 
 export default Feedback;
