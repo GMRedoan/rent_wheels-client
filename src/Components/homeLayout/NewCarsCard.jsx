@@ -1,5 +1,5 @@
-import { FaCarSide } from "react-icons/fa";
 import { Link } from "react-router";
+import { IoCarSportSharp } from "react-icons/io5";
 
 const NewCarsCard = ({ car }) => {
   return (
@@ -14,7 +14,7 @@ const NewCarsCard = ({ car }) => {
 
       <div className="p-5 space-y-3">
         <h2 className="text-xl font-bold text-black flex items-center gap-2">
-          <FaCarSide className="text-accent" />
+          <IoCarSportSharp className="text-accent" />
           {car.carName}
         </h2>
 
