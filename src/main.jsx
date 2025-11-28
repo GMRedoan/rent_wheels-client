@@ -15,6 +15,8 @@ import MyBooking from './Pages/MyBooking.jsx';
 import AllCars from './Pages/AllCars.jsx';
 import Error from './Pages/Error.jsx';
 import AboutUs from './Components/homeLayout/AboutUs.jsx';
+import CarDetails from './Pages/CarDetails.jsx';
+import Loading from './Pages/Loading.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,8 @@ const router = createBrowserRouter([
       {
         index: true,
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
+        hydrateFallbackElement: <Loading></Loading>
       },
       {
         path: '/addCar',
@@ -54,6 +57,12 @@ const router = createBrowserRouter([
         path: '/myBooking',
         element: <PrivateRoutes>
           <MyBooking></MyBooking>
+        </PrivateRoutes>
+      },
+      {
+        path: '/carDetails',
+        element: <PrivateRoutes>
+          <CarDetails></CarDetails>
         </PrivateRoutes>
       },
       {

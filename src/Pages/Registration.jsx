@@ -36,6 +36,25 @@ const Registration = () => {
 
         createUser(email, password)
             .then((result) => {
+                const newUser = {
+                    name,
+                    email,
+                    photoURL
+                }
+                // create user in the database
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data after user save', data)
+                    })
+
+
                 updateUserProfile({
                     displayName: name,
                     photoURL: photoURL
@@ -58,7 +77,26 @@ const Registration = () => {
     // google login
     const handleGoogle = () => {
         googleLogin()
-            .then(() => {
+            .then((result) => {
+                const newUser = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photoURL: result.user.photoURL
+                }
+
+                // save user info in the database by google login
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data after user save', data)
+                    })
+
                 Swal.fire({
                     title: "Registration Successful. Welcome to Rent Wheels 🎊",
                     icon: "success",
