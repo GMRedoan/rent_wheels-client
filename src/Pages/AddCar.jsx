@@ -14,12 +14,12 @@ const AddCar = () => {
         const location = form.location.value
         const photoURL = form.photoURL.value
         const providerName = form.providerName.value
-        const email = form.email.value
+        const providerEmail = form.email.value
         const status = form.status.value
         const description = form.description.value
 
         const newCars = {
-            carName, carType, rentPricePerDay, location, photoURL, description, providerName, email, status
+            carName, carType, rentPricePerDay, location, photoURL, description, providerName, providerEmail, status
         }
 
         // save new added car info in the database

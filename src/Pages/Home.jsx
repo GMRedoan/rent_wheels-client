@@ -13,6 +13,7 @@ const Home = () => {
     return (
         <div>
             <title>Rent Wheels</title>
+ 
              <Banner></Banner>
             <Slides></Slides>
             <div>
