@@ -10,7 +10,7 @@ const Root = () => {
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setInitialLoading(false), 500);
+    const timer = setTimeout(() => setInitialLoading(false), 600);
     return () => clearTimeout(timer);
   }, []);
 

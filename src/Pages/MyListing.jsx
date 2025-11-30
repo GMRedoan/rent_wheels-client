@@ -6,14 +6,12 @@ const MyListing = () => {
     const { user } = use(AuthContext)
     const [list, setList] = useState([])
     useEffect(() => {
-        if (user?.email) {
-            fetch(`http://localhost:3000/cars?providerEmail=${user.email}`)
+             fetch(`http://localhost:3000/cars?providerEmail=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setList(data)
                 })
-        }
-    }, [user?.email])
+     }, [user?.email])
     return (
 <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:px-20">
   <div className="pb-10">
@@ -31,7 +29,7 @@ const MyListing = () => {
         <thead>
           <tr className="bg-gray-200 text-accent text-[18px]">
             <th className="md:pl-36">Car Name</th>
-            <th className="px-4 text-left">Category</th>
+            <th className="px-4 text-left">Car Type</th>
             <th className="px-4 text-left">Rent Price</th>
             <th className="pl-8 md:pl-7">Status</th>
             <th className="pl-18 md:pl-18">Actions</th>

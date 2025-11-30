@@ -7,8 +7,8 @@ const ListCard = ({ singleList }) => {
 
       <td>{singleList.carType}</td>
 
-      <td className="font-semibold text-blue-600">
-        ৳{singleList.rentPricePerDay}
+      <td className="font-semibold">
+        ৳{singleList.rentPricePerDay}<span className="text-accent">/day</span>
       </td>
 
       <td>

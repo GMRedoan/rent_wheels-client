@@ -1,13 +1,49 @@
+import { use } from 'react';
 import { FaEnvelope, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
 import { IoCarSportSharp } from 'react-icons/io5';
 import { useLoaderData } from 'react-router';
+import { AuthContext } from '../provider/authContext';
+import Swal from 'sweetalert2';
 
 const CarDetails = () => {
     const car = useLoaderData()
+    const { user } = use(AuthContext)
+    const handleBook = () => {
+        const email = user.email
+        const carName = car.carName
+        const rentPricePerDay = car.rentPricePerDay
+        const carType = car.carType
+        const providerName = car.providerName
+        const providerEmail = car.providerEmail
+        const location = car.location
+
+        const newBook = {
+             email, carName, rentPricePerDay, carType, providerName, providerEmail, location
+        }
+        // save the booking data in the database
+        fetch('http://localhost:3000/books', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newBook)
+
+        })
+            .then(res => res.json())
+            .then(data =>
+                console.log('data after user book', data)
+            )
+        Swal.fire({
+            title: `${car.carName} Booked Successfully`,
+            icon: "success",
+            confirmButtonColor: "#67AB4F"
+        });
+
+    }
     return (
         <section>
-                 <title>{car.carName}</title>
-             <div>
+            <title>{car.carName}</title>
+            <div>
 
                 <h2 className='text-3xl md:text-5xl font-bold text-center py-8'> Car Information <span className='text-primary'>&</span> Rental Summary</h2>
                 <p className='text-accent font-semibold text-center'>See important details, availability, and provider info to make your booking decision easier.</p>
@@ -60,7 +96,7 @@ const CarDetails = () => {
                             </div>
                         </div>
 
-                        <button className="btn btn-primary w-full rounded-xl text-white hover:bg-secondary">
+                        <button onClick={handleBook} className="btn btn-primary w-full rounded-xl text-white hover:bg-secondary">
                             Book Now
                         </button>
                     </div>
