@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/authContext';
 import ListCard from './ListCard';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyListing = () => {
   const { user } = use(AuthContext)
@@ -47,6 +48,19 @@ const MyListing = () => {
       });
   }
 
+  if (list.length === 0) {
+    return (
+      <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:min-h-120">
+        <p className="text-center text-accent font-semibold text-2xl">
+          You haven't added any cars yet.
+        </p>
+        <Link to='/addCar' className='btn btn-primary text-white mt-5 hover:bg-secondary'>
+        Add Cars
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:px-20">
       <title>
@@ -60,7 +74,6 @@ const MyListing = () => {
           Easily update your car info, check rental status, and keep your listings up to date.
         </p>
       </div>
-
       <div className="overflow-x-auto w-full rounded-xl shadow-xl">
         <div className="min-w-[600px] bg-white">
           <table className="table w-full bg-white">

@@ -1,9 +1,47 @@
 import { use } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AuthContext } from "../provider/authContext";
+import Swal from "sweetalert2";
 
 const ListCard = ({ singleList, handleDelate }) => {
   const { user } = use(AuthContext)
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const carName = form.carName.value
+    const carType = form.carType.value
+    const rentPricePerDay = form.rentPricePerDay.value
+    const location = form.location.value
+    const description = form.description.value
+    const updatedCar = {
+      carName, rentPricePerDay, carType, location, description
+    }
+    // update data in DB
+    fetch(`http://localhost:3000/cars/${singleList._id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedCar)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount === 0) {
+          document.getElementById(`modal-${singleList._id}`).close()
+          return Swal.fire({
+            title: "Nothing is changed",
+            icon: "info",
+            confirmButtonColor: "#42A5F5",
+          })
+        }
+        document.getElementById(`modal-${singleList._id}`).close()
+        Swal.fire({
+          title: "Car Updated Successfully!",
+          icon: "success",
+          confirmButtonColor: "#67AB4F",
+        });
+      })
+  }
   return (
     <tr>
       <td className="md:pl-35 font-semibold">{singleList.carName}</td>
@@ -17,7 +55,7 @@ const ListCard = ({ singleList, handleDelate }) => {
       <td>
         {/* status */}
         {
-          singleList.status == 'Booked' ? <div className='badge badge-warning'>{singleList.status}</div> : <div className='badge badge-success'>{singleList.status}</div>
+          singleList.status == 'Unavailable' ? <div className='badge badge-warning'>{singleList.status}</div> : <div className='badge badge-success'>{singleList.status}</div>
         }
       </td>
 
@@ -31,7 +69,9 @@ const ListCard = ({ singleList, handleDelate }) => {
           <div className="mx-4 mb-10 max-w-5xl">
 
             <div className="max-w-7xl mx-auto">
-              <form className="bg-white rounded-2xl p-8 shadow-xl">
+
+              {/* form start here */}
+              <form onSubmit={handleUpdate} className="bg-white rounded-2xl p-8 shadow-xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div>
                     <label className="label">
@@ -40,6 +80,7 @@ const ListCard = ({ singleList, handleDelate }) => {
                     </label>
                     <input
                       required
+                      pattern=".*\S.*"
                       name="carName"
                       defaultValue={singleList.carName}
                       className="input input-bordered w-full" />
@@ -71,6 +112,7 @@ const ListCard = ({ singleList, handleDelate }) => {
                     </label>
                     <input
                       required
+                      pattern=".*\S.*"
                       name="rentPricePerDay"
                       type="number"
                       defaultValue={singleList.rentPricePerDay}
@@ -86,6 +128,7 @@ const ListCard = ({ singleList, handleDelate }) => {
                     </label>
                     <input
                       required
+                      pattern=".*\S.*"
                       name="location"
                       defaultValue={singleList.location}
                       className="input input-bordered w-full"
@@ -124,7 +167,8 @@ const ListCard = ({ singleList, handleDelate }) => {
                   </label>
                   <textarea
                     required
-                    // minLength={30}
+                    pattern=".*\S.*"
+                    minLength={20}
                     name="description"
                     defaultValue={singleList.description}
                     className="textarea textarea-bordered w-full min-h-[140px]"

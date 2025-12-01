@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/authContext';
 import BookCard from './BookCard';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyBooking = () => {
   const { user } = use(AuthContext)
@@ -14,8 +15,8 @@ const MyBooking = () => {
       )
   }, [user?.email])
 
-  //  delete data from listing
   const handleCancel = (_id) => {
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -27,6 +28,18 @@ const MyBooking = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
+          // cancel booking car and update the status
+          fetch(`http://localhost:3000/cars/${_id}`, {
+            method: 'PATCH',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: "Available" })
+          })
+            .then(res => res.json())
+            .then(() => { })
+
+          // delete booking car
           fetch(`http://localhost:3000/books/${_id}`, {
             method: 'DELETE'
           })
@@ -46,6 +59,20 @@ const MyBooking = () => {
         }
       });
   }
+
+  if (book.length === 0) {
+    return (
+      <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:min-h-120">
+        <p className="text-center text-accent font-semibold text-2xl">
+          You haven't booked any cars yet.
+        </p>
+        <Link to='/allCars' className='btn btn-primary text-white mt-5 hover:bg-secondary'>
+          Browse Car
+        </Link>
+      </div>
+    )
+  }
+
 
   return (
     <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:px-20">

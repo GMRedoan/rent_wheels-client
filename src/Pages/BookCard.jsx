@@ -28,10 +28,10 @@ const BookCard = ({ singleList, handleCancel }) => {
                 </span>
             </td>
 
-            <button
+            <td
             onClick={() => handleCancel(singleList._id)} className="btn btn-sm btn-error mt-1 text-white font-semibold">
                 Cancel
-            </button>
+            </td>
 
         </tr>
     );

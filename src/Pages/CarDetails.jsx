@@ -1,4 +1,4 @@
-import { use} from 'react';
+import { use, useState } from 'react';
 import { FaEnvelope, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
 import { IoCarSportSharp } from 'react-icons/io5';
 import { useLoaderData } from 'react-router';
@@ -6,9 +6,24 @@ import { AuthContext } from '../provider/authContext';
 import Swal from 'sweetalert2';
 
 const CarDetails = () => {
-    const car = useLoaderData()
+    const singleCar = useLoaderData()
     const { user } = use(AuthContext)
+    const [car, setCar] = useState(singleCar)
     const handleBook = () => {
+
+        // update status when booked the car
+        fetch(`http://localhost:3000/cars/${car._id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: "Unavailable" })
+        })
+            .then(res => res.json())
+            .then(() => {
+                setCar(prev => ({ ...prev, status: "Unavailable" }))
+            })
+
         const newBook = {
             email: user.email,
             ...car
@@ -23,16 +38,15 @@ const CarDetails = () => {
 
         })
             .then(res => res.json())
-            .then(data =>
-                console.log('data after user book', data)
-            )
+            .then(() => { })
         Swal.fire({
-            title: `${car.carName} Booked Successfully`,
+            title: `${car.carName} Booking Successful`,
             icon: "success",
             confirmButtonColor: "#67AB4F"
         });
-     }
+    }
     return (
+
         <section>
             <title>{car.carName}</title>
             <div>
@@ -62,12 +76,12 @@ const CarDetails = () => {
                             <div className="flex justify-between items-center">
                                 <span className="badge bg-gray-200 font-bold text-red-500">{car.carType}</span>
 
-                            {/* status */}
-                                 {
-                                    car.status == 'Booked' ? <div className='badge badge-warning'>{car.status}</div> : <div className='badge badge-success'>{car.status}</div>
-                                 }                         
-                                
-                                 </div>
+                                {/* status */}
+                                {
+                                    car.status == 'Unavailable' ? <div className='badge badge-warning'>{car.status}</div> : <div className='badge badge-success'>{car.status}</div>
+                                }
+
+                            </div>
 
                             <p className="text-accent">{car.description}</p>
 
@@ -89,16 +103,19 @@ const CarDetails = () => {
                             </div>
                         </div>
 
-                        <button
-                            onClick={handleBook}
-                            className='btn btn-primary text-white'>
+                        {
+                            car.status === 'Unavailable' ? <button disabled
+                                className='btn bg-gray-500 text-white'>
                                 Book Now
-                        </button>
+                            </button> : <button
+                                onClick={handleBook}
+                                className='btn btn-primary text-white hover:bg-secondary'>
+                                Book Now
+                            </button>
+                        }
                     </div>
                 </div>
-
             </div>
-
         </section>
     );
 };

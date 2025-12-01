@@ -1,7 +1,7 @@
 import { use } from "react";
 import { AuthContext } from "../provider/authContext";
 import Swal from "sweetalert2";
- 
+
 const AddCar = () => {
     const { user } = use(AuthContext)
     const handleSubmit = (e) => {
@@ -14,11 +14,10 @@ const AddCar = () => {
         const photoURL = form.photoURL.value
         const providerName = form.providerName.value
         const providerEmail = form.email.value
-        const status = form.status.value
         const description = form.description.value
 
         const newCars = {
-            carName, carType, rentPricePerDay, location, photoURL, description, providerName, providerEmail, status
+            carName, carType, rentPricePerDay, location, photoURL, description, providerName, providerEmail, status: 'Available'
         }
 
         // save new added car info in the database
@@ -30,9 +29,7 @@ const AddCar = () => {
             body: JSON.stringify(newCars)
         })
             .then(res => res.json())
-            .then(data => {
-                console.log('data after user save', data)
-            })
+            .then( () => {})
 
         Swal.fire({
             title: "Car Submitted Successfully in Rent Wheels",
@@ -54,6 +51,7 @@ const AddCar = () => {
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
+                                pattern=".*\S.*"
                                 required
                                 name="carName"
                                 placeholder="Enter your car name"
@@ -84,6 +82,7 @@ const AddCar = () => {
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
+                                pattern=".*\S.*"
                                 required
                                 name="rentPricePerDay"
                                 type="number"
@@ -99,6 +98,7 @@ const AddCar = () => {
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
+                                pattern=".*\S.*"
                                 required
                                 name="location"
                                 placeholder="Enter your valid location"
@@ -112,6 +112,7 @@ const AddCar = () => {
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
+                                pattern=".*\S.*"
                                 required
                                 name="photoURL"
                                 placeholder="Enter your photo URL"
@@ -141,17 +142,6 @@ const AddCar = () => {
                                 className="input input-bordered w-full bg-gray-50" />
                         </div>
 
-                        <div>
-                            <label className="label">
-                                <span className="label-text font-medium">Status</span>
-                            </label>
-                            <input
-                                readOnly
-                                name="status"
-                                defaultValue="available"
-                                className="input input-bordered w-full bg-gray-50" />
-                        </div>
-
                     </div>
 
                     <div className="mt-6">
@@ -160,8 +150,9 @@ const AddCar = () => {
                             <span className="text-red-500 ml-1">*</span>
                         </label>
                         <textarea
+                            pattern=".*\S.*"
                             required
-                            // minLength={30}
+                            minLength={20}
                             name="description"
                             placeholder="Short description about the car, features, fuel type, condition..."
                             className="textarea textarea-bordered w-full min-h-[140px]"
