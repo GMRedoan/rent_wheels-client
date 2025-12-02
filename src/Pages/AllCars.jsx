@@ -2,7 +2,7 @@ import React, { use } from 'react';
 import NewCarsCard from '../Components/homeLayout/NewCarsCard';
 import Feedback from '../Components/homeLayout/Feedback';
  
-const allCarsPromise = fetch('http://localhost:3000/cars')
+const allCarsPromise = fetch('https://rent-wheels-server-jet.vercel.app/cars')
     .then(res => res.json())
 const AllCars = () => {
     const allCars = use(allCarsPromise)

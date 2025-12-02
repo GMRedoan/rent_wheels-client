@@ -45,7 +45,7 @@ const Login = () => {
                 }
 
                 // save user info in the database by google login
-                fetch('http://localhost:3000/users', {
+                fetch('https://rent-wheels-server-jet.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

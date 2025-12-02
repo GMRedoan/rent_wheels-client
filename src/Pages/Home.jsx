@@ -6,7 +6,7 @@ import Feedback from '../Components/homeLayout/Feedback';
 import { use } from 'react';
 import NewCarsCard from '../Components/homeLayout/NewCarsCard';
 
-const newCarsPromise = fetch('http://localhost:3000/newCars')
+const newCarsPromise = fetch('https://rent-wheels-server-jet.vercel.app/newCars')
     .then(res => res.json())
 const Home = () => {
     const newCars = use(newCarsPromise)

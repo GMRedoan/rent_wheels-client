@@ -17,7 +17,7 @@ const ListCard = ({ singleList, handleDelate }) => {
       carName, rentPricePerDay, carType, location, description
     }
     // update data in DB
-    fetch(`http://localhost:3000/cars/${singleList._id}`, {
+    fetch(`https://rent-wheels-server-jet.vercel.app/cars/${singleList._id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'

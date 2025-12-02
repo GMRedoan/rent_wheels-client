@@ -21,7 +21,7 @@ const AddCar = () => {
         }
 
         // save new added car info in the database
-        fetch('http://localhost:3000/cars', {
+        fetch('https://rent-wheels-server-jet.vercel.app/cars', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

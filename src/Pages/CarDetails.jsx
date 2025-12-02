@@ -15,7 +15,7 @@ const CarDetails = () => {
     const handleBook = () => {
 
         // update status when booked the car
-        fetch(`http://localhost:3000/cars/${car._id}`, {
+        fetch(`https://rent-wheels-server-jet.vercel.app/cars/${car._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -32,7 +32,7 @@ const CarDetails = () => {
             ...car
         }
         // save the booking data in the database
-        fetch('http://localhost:3000/books', {
+        fetch('https://rent-wheels-server-jet.vercel.app/books', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

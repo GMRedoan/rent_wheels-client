@@ -8,7 +8,7 @@ const MyBooking = () => {
   const { user } = use(AuthContext)
   const [book, setBook] = useState([])
   useEffect(() => {
-    fetch(`http://localhost:3000/books?email=${user.email}`)
+    fetch(`https://rent-wheels-server-jet.vercel.app/books?email=${user.email}`)
       .then(res => res.json())
       .then(data =>
         setBook(data)
@@ -29,7 +29,7 @@ const MyBooking = () => {
       .then((result) => {
         if (result.isConfirmed) {
           // cancel booking car and update the status
-          fetch(`http://localhost:3000/cars/${_id}`, {
+          fetch(`https://rent-wheels-server-jet.vercel.app/cars/${_id}`, {
             method: 'PATCH',
             headers: {
               'content-type': 'application/json'
@@ -40,7 +40,7 @@ const MyBooking = () => {
             .then(() => { })
 
           // delete booking car
-          fetch(`http://localhost:3000/books/${_id}`, {
+          fetch(`https://rent-wheels-server-jet.vercel.app/books/${_id}`, {
             method: 'DELETE'
           })
             .then(res => res.json())

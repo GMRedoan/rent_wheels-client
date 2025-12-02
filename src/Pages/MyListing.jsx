@@ -8,7 +8,7 @@ const MyListing = () => {
   const { user } = use(AuthContext)
   const [list, setList] = useState([])
   useEffect(() => {
-    fetch(`http://localhost:3000/cars?providerEmail=${user.email}`)
+    fetch(`https://rent-wheels-server-jet.vercel.app/cars?providerEmail=${user.email}`)
       .then(res => res.json())
       .then(data => {
         setList(data)
@@ -28,7 +28,7 @@ const MyListing = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:3000/cars/${_id}`, {
+          fetch(`https://rent-wheels-server-jet.vercel.app/cars/${_id}`, {
             method: 'DELETE'
           })
             .then(res => res.json())
