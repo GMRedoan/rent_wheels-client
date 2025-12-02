@@ -3,12 +3,15 @@ import { FaEnvelope, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
 import { IoCarSportSharp } from 'react-icons/io5';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../provider/authContext';
+import bookLottie from '../assets/Confetti - Animation 01.json'
+import Lottie from 'lottie-react';
 import Swal from 'sweetalert2';
 
 const CarDetails = () => {
     const singleCar = useLoaderData()
     const { user } = use(AuthContext)
     const [car, setCar] = useState(singleCar)
+    const [showLottie, setShowLottie] = useState(false)
     const handleBook = () => {
 
         // update status when booked the car
@@ -42,12 +45,27 @@ const CarDetails = () => {
         Swal.fire({
             title: `${car.carName} Booking Successful`,
             icon: "success",
-            confirmButtonColor: "#67AB4F"
+            confirmButtonColor: "#67AB4F",
         });
+
+        setShowLottie(true);
+        setTimeout(() => {
+            setShowLottie(false);
+        }, 2000)
     }
     return (
-
         <section>
+            {showLottie && (
+                <div className="fixed inset-0 flex justify-center">
+                    <div>
+                        <Lottie
+                            animationData={bookLottie}
+                            loop={false}
+                            autoplay={true}
+                            className="md:w-full" />
+                    </div>
+                </div>
+            )}
             <title>{car.carName}</title>
             <div>
 
@@ -106,7 +124,7 @@ const CarDetails = () => {
                         {
                             car.status === 'Unavailable' ? <button disabled
                                 className='btn bg-gray-500 text-white'>
-                                Book Now
+                                Booked
                             </button> : <button
                                 onClick={handleBook}
                                 className='btn btn-primary text-white hover:bg-secondary'>

@@ -12,4 +12,4 @@ Live Link :
 
 * All user can Update their posted car from the listing page where all car show which they post for rent from the action tab.
 
-*
+* If any user want to delete their posted car they can easily do this from "my listing" page. Besides every user can cancel their booking from booking page.

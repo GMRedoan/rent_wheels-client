@@ -29,7 +29,7 @@ const AddCar = () => {
             body: JSON.stringify(newCars)
         })
             .then(res => res.json())
-            .then( () => {})
+            .then(() => { })
 
         Swal.fire({
             title: "Car Submitted Successfully in Rent Wheels",
