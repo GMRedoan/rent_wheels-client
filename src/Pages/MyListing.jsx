@@ -78,7 +78,7 @@ const MyListing = () => {
         <div className="min-w-[600px] bg-white">
           <table className="table w-full bg-white">
             <thead>
-              <tr className="bg-gray-200 text-accent md:text-[18px]">
+              <tr className="bg-gray-200 text-black md:text-[18px]">
                 <th className="md:pl-36">Car Name</th>
                 <th className="px-4 text-left">Car Type</th>
                 <th className="px-4 text-left">Rent Price</th>

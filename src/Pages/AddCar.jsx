@@ -47,7 +47,7 @@ const AddCar = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Car Name</span>
+                                <span className="label-text text-black font-medium">Car Name</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -60,7 +60,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Category</span>
+                                <span className="label-text text-black font-medium">Category</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <select
@@ -78,7 +78,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Rent Price (per day)</span>
+                                <span className="label-text text-black font-medium">Rent Price (per day)</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -94,7 +94,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Location</span>
+                                <span className="label-text text-black font-medium">Location</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -108,7 +108,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Photo URL</span>
+                                <span className="label-text text-black font-medium">Photo URL</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -121,32 +121,32 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Provider Name</span>
+                                <span className="label-text text-black font-medium">Provider Name</span>
                             </label>
                             <input
                                 readOnly
                                 name="providerName"
                                 defaultValue={user.displayName}
-                                className="input input-bordered w-full bg-gray-50"
+                                className="input input-bordered w-full"
                             />
                         </div>
 
                         <div>
                             <label className="label">
-                                <span className="label-text font-medium">Provider Email</span>
+                                <span className="label-text text-black font-medium">Provider Email</span>
                             </label>
                             <input
                                 readOnly
                                 name="email"
                                 defaultValue={user.email}
-                                className="input input-bordered w-full bg-gray-50" />
+                                className="input input-bordered w-full" />
                         </div>
 
                     </div>
 
                     <div className="mt-6">
                         <label className="label">
-                            <span className="label-text font-medium">Description</span>
+                            <span className="label-text text-black font-medium">Description</span>
                             <span className="text-red-500 ml-1">*</span>
                         </label>
                         <textarea

@@ -51,13 +51,13 @@ const Feedback = () => {
 
       <section>
       <div className="text-center mb-16 px-4">
-        <h2 className="text-4xl md:text-6xl font-bold text-neutral">
+        <h2 className="text-4xl md:text-6xl font-bold">
           Loved by Hundreds of <span className="text-primary">Happy Clients</span>
         </h2>
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-        <div className="card bg-base-100 shadow-xl border border-base-200 p-8 rounded-2xl">
+        <div className="card bg-white shadow-xl border border-base-200 p-8 rounded-2xl">
           <h3 className="text-xl font-semibold text-neutral mb-4">
             Professionalism that matches the highest executive standards.
           </h3>
@@ -83,7 +83,7 @@ const Feedback = () => {
           </div>
         </div>
 
-        <div className="card bg-base-100 shadow-xl border border-base-200 p-8 rounded-2xl">
+        <div className="card bg-white shadow-xl border border-base-200 p-8 rounded-2xl">
           <h3 className="text-xl font-semibold text-neutral mb-4">
             It felt less like renting, more like being chauffeured by my own staff.
           </h3>
@@ -108,7 +108,7 @@ const Feedback = () => {
           </div>
         </div>
 
-        <div className="card bg-base-100 shadow-xl border border-base-200 p-8 rounded-2xl">
+        <div className="card bg-white shadow-xl border border-base-200 p-8 rounded-2xl">
           <h3 className="text-xl font-semibold text-neutral mb-4">
             A service that truly respects my time.
           </h3>
@@ -135,7 +135,7 @@ const Feedback = () => {
         </div>
       </div>
 
-      <p className="text-center mt-16 text-neutral/70">
+      <p className="text-center mt-16">
         Real stories from satisfied travelers and VIP clients.
       </p>
     </section>

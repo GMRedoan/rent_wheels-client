@@ -2,16 +2,16 @@
 const BookCard = ({ singleList, handleCancel }) => {
     return (
         <tr>
-            <td className="md:pl-25 font-semibold">{singleList.carName}</td>
+            <td className="md:pl-25 font-semibold text-black">{singleList.carName}</td>
 
-            <td>{singleList.carType}</td>
+            <td className="text-black">{singleList.carType}</td>
 
-            <td className="font-semibold">
+            <td className="font-semibold text-black">
                 ৳{singleList.rentPricePerDay}<span className="text-accent">/day</span>
             </td>
 
             <td>
-                <span>
+                <span className="text-black">
                     {singleList.providerName}
                 </span>
             </td>

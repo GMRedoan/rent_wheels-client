@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/authContext';
 import Swal from 'sweetalert2';
 import logo from '/logo.png'
+import Theme from '../../Shared/Theme';
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -87,6 +88,9 @@ const Navbar = () => {
                     }
                 </ul>
             </nav>
+            <div>
+                <Theme></Theme>
+            </div>
             {
                 user ?
                     <div className="dropdown dropdown-end">
@@ -102,7 +106,7 @@ const Navbar = () => {
                             tabIndex={0}
                             className="dropdown-content menu bg-base-100 rounded-xl shadow-lg border border-primary w-56 pb-4">
                             <li className="pointer-events-none!">
-                                <p className="font-semibold text-lg text-gray-800">{user.displayName}
+                                <p className="font-semibold text-lg">{user.displayName}
                                 </p>
                             </li>
                             <li className="pointer-events-none!">
