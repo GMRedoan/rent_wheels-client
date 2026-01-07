@@ -18,6 +18,8 @@ import AboutUs from './Components/homeLayout/AboutUs.jsx';
 import CarDetails from './Pages/CarDetails.jsx';
 import Loading from './Pages/Loading.jsx';
 import Profile from './Components/Profile/Profile.jsx';
+import FAQ from './Extra/FAQ.jsx';
+import PrivacyPolicy from './Extra/PrivacyPolicy.jsx';
  
 const router = createBrowserRouter([
   {
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
       {
         path: '/aboutUs',
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: 'faq',
+        element: <FAQ></FAQ>
+      },
+      {
+        path: 'pp',
+        element: <PrivacyPolicy></PrivacyPolicy>
       },
       {
         path:'/profile',

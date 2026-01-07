@@ -41,7 +41,7 @@ const Banner = () => {
 
 
     return (
-        <section
+        <section id="banner-section"
             className="relative w-full bg-base-200 border-b border-gray-300 overflow-hidden"
             ref={ref}
         >
@@ -57,6 +57,7 @@ const Banner = () => {
             ></div>
 
             {/* Content */}
+
             <div className="relative z-10 py-10 md:py-44 max-w-6xl mx-auto px-5">
                 <p className="text-center text-sm md:text-base mb-6">
                     {inView && (

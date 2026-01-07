@@ -2,7 +2,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const GetInTouch = () => {
   return (
-    <section className="bg-base-200 pt-10 pb-20">
+    <section id="contact-section" className="bg-base-200 pt-10 pb-20">
       {/* Heading */}
       <div className="text-center mb-20 px-4">
         <h2 data-aos="zoom-in" className="text-4xl md:text-5xl font-bold">

@@ -7,7 +7,7 @@ import {
 
 const Features = () => {
   return (
-    <section className="bg-base-200 pb-20 md:pb-40">
+    <section id="features-section" className="bg-base-200 pb-20 md:pb-40">
       {/* Heading */}
       <div className="text-center mb-20 px-4">
         <h2 data-aos="zoom-in" className="text-4xl md:text-6xl font-bold">
@@ -79,7 +79,8 @@ const Features = () => {
             alt="Car"
             className="rounded-2xl shadow-2xl"
           />
-          <div className="absolute -bottom-6 -left-6 bg-primary text-white p-2 md:px-6 md:py-4 rounded-xl shadow-lg">
+          <div className="
+          absolute -bottom-6 -left-6 bg-primary text-white p-2 md:px-6 md:py-4 rounded-xl shadow-lg">
             <p className="text-md md:text-lg font-semibold">10+ Years Experience</p>
             <p className="text-sm opacity-90">Trusted by thousands</p>
           </div>

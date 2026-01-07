@@ -15,7 +15,7 @@ const newCarsPromise = fetch('https://rent-wheels-server-jet.vercel.app/newCars'
 const Home = () => {
     const newCars = use(newCarsPromise)
     return (
-        <div>
+        <div className=''>
             <title>Rent Wheels</title>
  
              <Banner></Banner>
