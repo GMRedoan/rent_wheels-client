@@ -23,6 +23,8 @@ const Registration = () => {
         const form = e.target
         const name = form.name.value
         const photoURL = form.photoURL.value
+        const phoneNumber = form.phone.value
+        const location = form.location.value
         const email = form.email.value
         const password = form.password.value
         const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -39,7 +41,10 @@ const Registration = () => {
                 const newUser = {
                     name,
                     email,
-                    photoURL
+                    photoURL,
+                    phoneNumber,
+                    location,
+                    role: 'user'
                 }
                 // create user in the database
                 fetch('https://rent-wheels-server-jet.vercel.app/users', {
@@ -60,7 +65,7 @@ const Registration = () => {
                     photoURL: photoURL
                 })
                 Swal.fire({
-                    title: "Registration Successful. Welcome to Toy Topia 🎊",
+                    title: "Registration Successful. Welcome to Rent-Wheels 🎊",
                     icon: "success",
                     confirmButtonColor: "#67AB4F"
                 });
@@ -81,7 +86,9 @@ const Registration = () => {
                 const newUser = {
                     name: result.user.displayName,
                     email: result.user.email,
-                    photoURL: result.user.photoURL
+                    photoURL: result.user.photoURL,
+                    location,
+                    role: 'user'
                 }
 
                 // save user info in the database by google login
@@ -114,63 +121,141 @@ const Registration = () => {
             <title>Registration</title>
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-center">
-                    <h1 className="text-5xl font-bold">Create Your <span className='text-primary'>Account</span> Now !</h1>
+                    <h1 className="text-5xl font-bold md:pt-18">Create Your <span className='text-primary'>Account</span> Now !</h1>
                     <p className="py-6 text-accent">
                         Register now and begin your Journey.
                     </p>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card bg-base-100 shrink-0 shadow-2xl max-w-2xl  w-full">
                     <div className="card-body">
                         <form onSubmit={handleRegister}>
-                            <fieldset className="fieldset">
-                                {/* name */}
-                                <label>Name</label>
-                                <input type="text" className="input"
-                                    name='name'
-                                    required
-                                    placeholder="Name" />
+                            <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                                {/* photo */}
-                                <label>Photo URL</label>
-                                <input type="text" className="input"
-                                    required
-                                    name='photoURL'
-                                    placeholder="Photo URL" />
+                                {/* LEFT COLUMN */}
+                                <div className="space-y-4">
+                                    {/* Name */}
+                                    <div>
+                                        <label className="label text-base-300">Name</label>
+                                        <input
+                                            type="text"
+                                            className="input input-bordered w-full"
+                                            name="name"
+                                            required
+                                            placeholder="Your Name"
+                                        />
+                                    </div>
 
-                                {/* email */}
-                                <label>Email</label>
-                                <input type="email" className="input"
-                                    name='email'
-                                    required
-                                    placeholder="Email" />
+                                    {/* Photo */}
+                                    <div>
+                                        <label className="label text-base-300">Photo URL</label>
+                                        <input
+                                            type="text"
+                                            className="input input-bordered w-full"
+                                            name="photoURL"
+                                            required
+                                            placeholder="Photo URL"
+                                        />
+                                    </div>
 
-                                {/* password */}
-                                <label>Password</label>
-                                <div className='relative'>
-                                    <input type={showPass ? 'text' : 'password'}
-                                        name='password'
-                                        required
-                                        className="input" placeholder="Password" />
-                                    <p
-                                        onClick={() => setShowPass(!showPass)}
-                                        className='absolute top-3.5 right-5 cursor-pointer z-10'>{showPass ? <FaEyeSlash /> : <FaEye />}</p>
+                                    {/* Phone */}
+                                    <div>
+                                        <label className="label text-base-300">Phone Number</label>
+                                        <input
+                                            type="number"
+                                            className="input input-bordered w-full"
+                                            name="phone"
+                                            required
+                                            placeholder="Phone number"
+                                        />
+                                    </div>
                                 </div>
-                                {
-                                    error && <p className='text-red-500'>{error}</p>
-                                }
-                                <button
-                                    type='submit'
-                                    className="btn bg-primary mt-4 text-white hover:bg-secondary 
-                                font-semibold">Register Now</button>
-                                <button
-                                    type='button'
-                                    onClick={handleGoogle}
-                                    className="btn bg-white text-black border-[#e5e5e5]">
-                                    <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-                                    Login with Google
-                                </button>
+
+                                {/* RIGHT COLUMN */}
+                                <div className="space-y-4">
+                                    {/* Location */}
+                                    <div>
+                                        <label className="label text-base-300">Location</label>
+                                        <input
+                                            type="text"
+                                            className="input input-bordered w-full"
+                                            name="location"
+                                            required
+                                            placeholder="Your location"
+                                        />
+                                    </div>
+
+                                    {/* Email */}
+                                    <div>
+                                        <label className="label text-base-300">Email</label>
+                                        <input
+                                            type="email"
+                                            className="input input-bordered w-full"
+                                            name="email"
+                                            required
+                                            placeholder="Email"
+                                        />
+                                    </div>
+
+                                    {/* Password */}
+                                    <div>
+                                        <label className="label text-base-300">Password</label>
+                                        <div className="relative">
+                                            <input
+                                                type={showPass ? "text" : "password"}
+                                                name="password"
+                                                required
+                                                className="input input-bordered w-full"
+                                                placeholder="Password"
+                                            />
+                                            <span
+                                                onClick={() => setShowPass(!showPass)}
+                                                className="absolute right-4 top-3 cursor-pointer"
+                                            >
+                                                {showPass ? <FaEyeSlash /> : <FaEye />}
+                                            </span>
+                                            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+                                         </div>
+                                    </div>
+                                </div>
+
                             </fieldset>
-                            <p className='pt-2'>Already have an Account ! <Link to='/login'><span className='text-blue-500 font-semibold hover:underline'>Login Now</span></Link></p>
+
+                            {/* BUTTONS SECTION */}
+                            <div className="mt-8 space-y-3">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary w-full text-white"
+                                >
+                                    Register Now
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={handleGoogle}
+                                    className="btn btn-outline w-full flex items-center gap-2"
+                                >
+                                    <svg
+                                        aria-label="Google logo"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 512 512"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341" />
+                                        <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57" />
+                                        <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73" />
+                                        <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55" />
+                                    </svg>
+                                    Continue with Google
+                                </button>
+
+                                <p className="text-center text-sm">
+                                    Already have an account?{" "}
+                                    <Link to="/login" className="text-primary font-semibold hover:underline">
+                                        Login Now
+                                    </Link>
+                                </p>
+                            </div>
                         </form>
                     </div>
                 </div>

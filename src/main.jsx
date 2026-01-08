@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter } from 'react-router';
@@ -17,9 +17,11 @@ import Error from './Pages/Error.jsx';
 import AboutUs from './Components/homeLayout/AboutUs.jsx';
 import CarDetails from './Pages/CarDetails.jsx';
 import Loading from './Pages/Loading.jsx';
-import Profile from './Components/Profile/Profile.jsx';
 import FAQ from './Extra/FAQ.jsx';
 import PrivacyPolicy from './Extra/PrivacyPolicy.jsx';
+import DashBoardLayout from './DashboardLayout/DashboardLayout.jsx';
+import Dashboard from './DashboardLayout/Dashboard/Dashboard.jsx';
+import Profile from './DashboardLayout/Dashboard/Profile.jsx';
  
 const router = createBrowserRouter([
   {
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: '/allCars',
         element: <AllCars></AllCars>
-      },
+        },
       {
         path: '/login',
         element: <Login></Login>
@@ -49,12 +51,6 @@ const router = createBrowserRouter([
       {
         path: '/registration',
         element: <Registration></Registration>
-      },
-      {
-        path: '/myListing',
-        element: <PrivateRoutes>
-          <MyListing></MyListing>
-        </PrivateRoutes>
       },
       {
         path: '/myBooking',
@@ -65,9 +61,7 @@ const router = createBrowserRouter([
       {
         path: '/carDetails/:id',
         loader: ({ params }) => fetch(`https://rent-wheels-server-jet.vercel.app/cars/${params.id}`),
-        element: <PrivateRoutes>
-          <CarDetails></CarDetails>
-        </PrivateRoutes>,
+        element:<CarDetails></CarDetails>,
         hydrateFallbackElement: <Loading></Loading>
       },
       {
@@ -91,6 +85,28 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path:'/dashboard',
+    element:<PrivateRoutes>
+      <DashBoardLayout></DashBoardLayout>
+    </PrivateRoutes>,
+    children:[
+      {
+        index: true,
+        element:<Dashboard></Dashboard>
+      },
+      {
+        path:'profile',
+        element:<Profile></Profile>
+      },
+            {
+        path: 'myListing',
+        element: <PrivateRoutes>
+          <MyListing></MyListing>
+        </PrivateRoutes>
+      },
+    ]
+  },
+  {
     path: '/*',
     element: <Error></Error>
   }
@@ -99,7 +115,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-         <RouterProvider router={router} />
+            <RouterProvider router={router} />
      </AuthProvider>
   </StrictMode>,
 )

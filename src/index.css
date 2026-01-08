@@ -4,7 +4,7 @@
 /* Light Theme */
 @plugin "daisyui/theme" {
   name: "light";
-  default: true;
+  default: false;
   --color-primary:  #67AB4F;
   --color-secondary: #1C911D;
   --color-base-100: #FAFAF7;    
@@ -16,7 +16,7 @@
 /* Dark Theme */
 @plugin "daisyui/theme" {
   name: "dark";
-  default: false;
+  default: true;
   --color-primary:  #67AB4F;
   --color-secondary: #1C911D;
   --color-base-100: #1A1A1A;    

@@ -74,7 +74,7 @@ const CarDetails = () => {
             </div>
 
             <div className='px-4 py-10 md:py-18'>
-                <div className="max-w-6xl mx-auto border border-accent rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden bg-white flex flex-col md:flex-row">
+                <div className="max-w-6xl mx-auto border border-accent rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden bg-base-100 flex flex-col md:flex-row">
 
                     <div className="md:w-1/2 w-full">
                         <img
@@ -107,12 +107,12 @@ const CarDetails = () => {
                                 <span className='text-accent'>Rent Price:</span> <span className='font-bold'>৳{car.rentPricePerDay}</span> <span className='text-accent'>/day</span>
                             </p>
 
-                            <div className="flex items-center gap-2 text-gray-700">
+                            <div className="flex items-center gap-2 text-accent">
                                 <FaMapMarkerAlt /> {car.location}
                             </div>
 
                             <div className="bg-gray-100 rounded-xl p-3 space-y-1">
-                                <p className="flex items-center gap-2 font-medium">
+                                <p className="flex items-center gap-2 font-medium text-base-100">
                                     <FaUser /> {car.providerName}
                                 </p>
                                 <p className="flex items-center gap-2 text-blue-600">

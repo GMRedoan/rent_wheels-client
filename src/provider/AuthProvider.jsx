@@ -6,6 +6,7 @@ import app from '../firebase/firebase.config';
 const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true)
 
     //    sign in 
@@ -33,7 +34,7 @@ const AuthProvider = ({ children }) => {
     }
 
     //   preserve the user
-    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
             setUser(CurrentUser)
@@ -55,6 +56,17 @@ const AuthProvider = ({ children }) => {
             })
     }
 
+    // get user role
+    useEffect(() => {
+        if (!user?.email) return;
+
+        fetch(`https://rent-wheels-server-jet.vercel.app/role/${user.email}`)
+            .then(res => res.json())
+            .then(data => setUserInfo(data))
+            .catch(err => console.error(err));
+
+    }, [user?.email]);
+
     const authData = {
         user,
         loading,
@@ -63,7 +75,9 @@ const AuthProvider = ({ children }) => {
         Login,
         logout,
         googleLogin,
-        updateUserProfile
+        updateUserProfile,
+        userInfo,
+        setUserInfo
     }
     return (
         <AuthContext value={authData}>

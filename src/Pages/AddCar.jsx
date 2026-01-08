@@ -43,11 +43,11 @@ const AddCar = () => {
             <title>Add Your Car</title>
 
             <div className="max-w-7xl mx-auto">
-                <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-xl">
+                <form onSubmit={handleSubmit} className="bg-base-100 rounded-2xl p-8 shadow-xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Car Name</span>
+                                <span className="label-text text-base-300 font-medium">Car Name</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -60,7 +60,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Category</span>
+                                <span className="label-text text-base-300 font-medium">Category</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <select
@@ -78,7 +78,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Rent Price (per day)</span>
+                                <span className="label-text text-base-300 font-medium">Rent Price (per day)</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -94,7 +94,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Location</span>
+                                <span className="label-text text-base-300 font-medium">Location</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -108,7 +108,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Photo URL</span>
+                                <span className="label-text text-base-300 font-medium">Photo URL</span>
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
@@ -121,7 +121,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Provider Name</span>
+                                <span className="label-text text-base-300 font-medium">Provider Name</span>
                             </label>
                             <input
                                 readOnly
@@ -133,7 +133,7 @@ const AddCar = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-black font-medium">Provider Email</span>
+                                <span className="label-text text-base-300 font-medium">Provider Email</span>
                             </label>
                             <input
                                 readOnly
@@ -146,7 +146,8 @@ const AddCar = () => {
 
                     <div className="mt-6">
                         <label className="label">
-                            <span className="label-text text-black font-medium">Description</span>
+                            <span className="label-text text-base-300
+                             font-medium">Description</span>
                             <span className="text-red-500 ml-1">*</span>
                         </label>
                         <textarea

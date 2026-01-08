@@ -7,22 +7,22 @@ import Theme from '../../Shared/Theme';
 
 const Navbar = () => {
     const navigate = useNavigate()
-    const { user, logout 
-     } = use(AuthContext)
+    const { user, logout, userInfo
+    } = use(AuthContext)
 
     const handleLogout = () => {
         logout()
-        .then(() => {
-            Swal.fire({
-                title: "You Logged Out Successfully",
-                icon: "success",
-                confirmButtonColor: "#67AB4F"
+            .then(() => {
+                Swal.fire({
+                    title: "You Logged Out Successfully",
+                    icon: "success",
+                    confirmButtonColor: "#67AB4F"
+                });
+                navigate('/')
+            })
+            .catch((error) => {
+                console.log(error)
             });
-            navigate('/')
-        })
-        .catch((error) => {
-            console.log(error)
-        });
     }
 
     return (
@@ -44,19 +44,13 @@ const Navbar = () => {
                         <div className='flex items-center gap-1 text-xl'>
                             <NavLink to='allCars'><li>Browse Cars</li></NavLink>
                         </div>
-                        {
-                            user &&
-                            <div className='flex items-center gap-1 text-xl'>
-                                <NavLink to='myListing'><li>My Listing</li></NavLink>
-                            </div>
-                        }
-                        {
-                            user &&
-                            <div className='flex items-center gap-1 text-xl'>
-                                <NavLink to='myBooking'><li>My Booking</li></NavLink>
-                            </div>
-                        }
-                     </ul>
+                        <div className='flex items-center gap-1 text-xl'>
+                            <NavLink to='faq'><li>FAQ</li></NavLink>
+                        </div>
+                        <div className='flex items-center gap-1 text-xl'>
+                            <NavLink to='aboutUs'><li>About Us</li></NavLink>
+                        </div>
+                    </ul>
                 </div>
                 <Link to='/' className='-ml-4 md:ml-0 flex justify-center  items-center'>
                     <img className='w-[55px] md:w-[82px]' src={logo} alt="" />
@@ -74,18 +68,12 @@ const Navbar = () => {
                     <div className='flex items-center gap-1 text-xl'>
                         <NavLink to='allCars'><li>Browse Cars</li></NavLink>
                     </div>
-                    {
-                        user &&
-                        <div className='flex items-center gap-1 text-xl'>
-                            <NavLink to='myListing'><li>My Listing</li></NavLink>
-                        </div>
-                    }
-                    {
-                        user &&
-                        <div className='flex items-center gap-1 text-xl'>
-                            <NavLink to='myBooking'><li>My Booking</li></NavLink>
-                        </div>
-                    }
+                    <div className='flex items-center gap-1 text-xl'>
+                        <NavLink to='faq'><li>FAQ</li></NavLink>
+                    </div>
+                    <div className='flex items-center gap-1 text-xl'>
+                        <NavLink to='aboutUs'><li>About Us</li></NavLink>
+                    </div>
                 </ul>
             </nav>
             <div>
@@ -97,7 +85,7 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="m-1">
                             <img
                                 className="w-[42px] h-[42px] rounded-full cursor-pointer ring-2 ring-primary/40 hover:ring-primary transition"
-                                src={user.photoURL}
+                                src={userInfo?.photoURL}
                                 alt="profile"
                             />
                         </div>
@@ -106,11 +94,11 @@ const Navbar = () => {
                             tabIndex={0}
                             className="dropdown-content menu bg-base-100 rounded-xl shadow-lg border border-primary w-56 pb-4">
                             <li className="pointer-events-none!">
-                                <p className="font-semibold text-lg flex justify-center mb-3">{user.displayName}
+                                <p className="font-semibold text-lg flex justify-center mb-3">{userInfo?.name}
                                 </p>
                             </li>
-                            <li className="">
-                                <Link to='profile' className='btn btn-sm bg-gray-500 font-bold text-white rounded-xl hover:bg-gray-700'>Profile</Link>
+                            <li>
+                                <Link to='/dashboard/profile' className='btn btn-sm bg-gray-500 font-bold text-white rounded-xl hover:bg-gray-700'>Dashboard</Link>
                             </li>
 
                             <div className="divider my-1"></div>

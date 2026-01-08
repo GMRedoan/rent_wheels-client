@@ -2,8 +2,9 @@ import { Link } from "react-router";
 import { IoCarSportSharp } from "react-icons/io5";
 
 const NewCarsCard = ({ car }) => {
+  
   return (
-    <section data-aos="zoom-in">
+    <section>
       <div className="border border-gray-400 rounded-2xl overflow-hidden shadow-md bg-base-100 hover:shadow-xl transition duration-300 hover:scale-[1.03] cursor-pointer">
 
         <div className="h-56 w-full overflow-hidden">

@@ -21,13 +21,20 @@ const Theme = () => {
   };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="flex items-center justify-center cursor-pointer"
-      aria-label="Toggle Theme"
-    >
-      {theme === "light" ? <FaMoon /> : <FaSun className="text-yellow-400" />}
-    </button>
+<button
+  onClick={toggleTheme}
+  className="flex items-center justify-center cursor-pointer"
+  aria-label="Toggle Theme"
+>
+  <p>Light</p>
+  <input
+    type="checkbox"
+    className="toggle border-white bg-primary checked:border-black checked:bg-white checked:text-black mx-2"
+    checked={theme === "dark"}
+    readOnly
+  />
+  <p>Dark</p>
+</button>
   );
 };
 
