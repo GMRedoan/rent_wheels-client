@@ -25,6 +25,8 @@ import Profile from './DashboardLayout/Dashboard/Profile.jsx';
 import UserRoutes from './Routes/UserRoutes.jsx';
 import AllUser from './DashboardLayout/Admin/AllUser.jsx';
 import AdminRoutes from './Routes/AdminRoutes.jsx';
+import PostManagement from './DashboardLayout/Admin/PostManagement.jsx';
+import BookingManagement from './DashboardLayout/Admin/BookingManagement.jsx';
 
 const router = createBrowserRouter([
   {
@@ -89,7 +91,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        loader: ()=> fetch("https://rent-wheels-server-jet.vercel.app/users"),
+        hydrateFallbackElement: <Loading></Loading>
       },
       {
         path: 'profile',
@@ -112,8 +116,24 @@ const router = createBrowserRouter([
         element: <AdminRoutes>
           <AllUser></AllUser>
         </AdminRoutes>,
-        loader: ()=> fetch("https://rent-wheels-server-jet.vercel.app/users"),
-        hydrateFallbackElement:<Loading></Loading>
+        loader: () => fetch("https://rent-wheels-server-jet.vercel.app/users"),
+        hydrateFallbackElement: <Loading></Loading>
+      },
+      {
+        path: 'all-posting',
+        element: <AdminRoutes>
+          <PostManagement></PostManagement>
+        </AdminRoutes>,
+        loader: () => fetch("https://rent-wheels-server-jet.vercel.app/cars"),
+        hydrateFallbackElement: <Loading></Loading>
+      },
+      {
+        path: 'all-booking',
+        element: <AdminRoutes>
+          <BookingManagement></BookingManagement>
+        </AdminRoutes>,
+        loader: () => fetch("https://rent-wheels-server-jet.vercel.app/books"),
+        hydrateFallbackElement: <Loading></Loading>
       }
     ]
   },

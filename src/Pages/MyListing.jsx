@@ -79,7 +79,8 @@ const MyListing = () => {
           <table className="table w-full">
             <thead>
               <tr className="bg-gray-300 text-black md:text-[18px]">
-                <th className="md:pl-36">Car Name</th>
+                <th className="md:pl-16">No</th>
+                <th>Car Name</th>
                 <th className="px-4 text-left">Car Type</th>
                 <th className="px-4 text-left">Rent Price</th>
                 <th className="pl-8 md:pl-7">Status</th>
@@ -88,8 +89,8 @@ const MyListing = () => {
             </thead>
 
             <tbody>
-              {list.map((singleList) => (
-                <ListCard key={singleList._id} handleDelate={handleDelate} singleList={singleList} />
+              {list.map((singleList, index) => (
+                <ListCard key={singleList._id} index={index} handleDelate={handleDelate} singleList={singleList} />
               ))}
             </tbody>
           </table>

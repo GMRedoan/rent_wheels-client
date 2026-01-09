@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../../provider/authContext';
-import { FaEdit, FaSave, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaSave, FaTimes, FaMapMarkerAlt, FaPhone, FaImage, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const Profile = () => {
@@ -36,13 +36,11 @@ const Profile = () => {
         );
 
         if (changes.length === 0) {
-            Swal.fire({
+            return Swal.fire({
                 icon: 'info',
                 title: 'No changes detected',
-                text: 'Update at least one field to save changes.',
                 confirmButtonColor: '#67AB4F'
             });
-            return;
         }
 
         setLoading(true);
@@ -50,10 +48,10 @@ const Profile = () => {
         try {
             const updatedData = {
                 ...formData,
-                photoURL: formData?.photoURL || userInfo?.photoURL
+                photoURL: formData.photoURL || userInfo.photoURL
             };
 
-            const res = await fetch(
+            await fetch(
                 `https://rent-wheels-server-jet.vercel.app/role/${userInfo.email}`,
                 {
                     method: 'PATCH',
@@ -62,111 +60,116 @@ const Profile = () => {
                 }
             );
 
-            await res.json();
-
             setUserInfo({ ...userInfo, ...updatedData });
             setEdit(false);
 
             Swal.fire({
                 icon: 'success',
-                title: 'Profile updated',
-                text: `${changes.length} field(s) updated successfully`,
+                title: 'Profile Updated',
+                text: `${changes.length} field(s) updated`,
                 confirmButtonColor: '#67AB4F'
             });
-        } catch (error) {
-            console.log(error);
+        } catch {
             Swal.fire({
                 icon: 'error',
-                title: 'Update failed',
-                text: 'Something went wrong!',
+                title: 'Update Failed',
             });
         } finally {
             setLoading(false);
         }
     };
 
+    const fields = [
+        { label: 'Full Name', name: 'name', icon: <FaUser /> },
+        { label: 'Location', name: 'location', icon: <FaMapMarkerAlt /> },
+        { label: 'Phone Number', name: 'phoneNumber', icon: <FaPhone /> },
+        { label: 'Photo URL', name: 'photoURL', icon: <FaImage /> },
+    ];
+
     return (
         <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
-            <div className="bg-base-100 rounded-2xl shadow-xl max-w-3xl w-full p-8">
+
+            <div className="max-w-4xl w-full bg-base-100 rounded-3xl shadow-2xl overflow-hidden animate-fade-in">
 
                 {/* HEADER */}
-                <div className="flex flex-col md:flex-row items-center gap-6 border-b pb-6">
-                    <div className="avatar">
-                        <div className="w-32 rounded-full ring ring-primary ring-offset-4">
+                <div className="relative bg-linear-to-r from-primary to-secondary p-10 text-white">
+
+                    <div className="absolute -bottom-17 left-1/2 transform -translate-x-1/2">
+                        <div className="w-32 h-32 rounded-full ring-4 ring-white shadow-xl overflow-hidden">
                             <img src={userInfo?.photoURL} alt="Profile" />
                         </div>
                     </div>
 
-                    <div className="text-center md:text-left">
-                        <h2 className="text-2xl font-bold">{userInfo?.name}</h2>
-                        <p className="text-sm text-gray-500">{userInfo?.email}</p>
+                    <div className="text-center mt-6">
+                        <h2 className="text-3xl font-bold">{userInfo?.name}</h2>
+                        <p className="text-sm opacity-70">{userInfo?.email}</p>
                     </div>
                 </div>
 
                 {/* BODY */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div className="py-20 px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    {[
-                        { label: 'Full Name', name: 'name' },
-                        { label: 'Location', name: 'location' },
-                        { label: 'Phone Number', name: 'phoneNumber' },
-                        { label: 'Photo URL', name: 'photoURL' },
-                    ].map(({ label, name }) => (
-                        <div key={name}>
-                            <label className="text-sm font-medium text-gray-600">
-                                {label}
-                            </label>
-
-                            {!edit ? (
-                                <div className="mt-1 p-3 rounded-lg bg-base-200 text-sm">
-                                    {userInfo[name] || 'Not provided'}
-                                </div>
-                            ) : (
-                                <input
-                                    type="text"
-                                    name={name}
-                                    value={formData[name]}
-                                    onChange={handleChange}
-                                    className="input input-bordered w-full mt-1"
-                                />
-                            )}
-                        </div>
-                    ))}
-                </div>
-
-                <div className="flex justify-end gap-3 mt-8">
-                    {!edit ? (
-                        <button
-                            onClick={() => setEdit(true)}
-                            className="btn btn-primary text-white gap-2"
-                        >
-                            <FaEdit /> Edit Profile
-                        </button>
-                    ) : (
-                        <>
-
-                            <button
-                                onClick={handleUpdate}
-                                className="btn btn-primary text-white gap-2 hover:btn-secondary"
-                                disabled={loading}
+                        {fields.map(({ label, name, icon }) => (
+                            <div
+                                key={name}
+                                className="transition-transform duration-300 hover:-translate-y-1"
                             >
-                                {loading ? (
-                                    <span className="loading loading-spinner"></span>
+                                <label className="text-sm font-semibold flex items-center gap-2 text-gray-600">
+                                    {icon} {label}
+                                </label>
+
+                                {!edit ? (
+                                    <div className="mt-2 p-3 rounded-xl bg-base-200 text-sm shadow-inner">
+                                        {userInfo[name] || 'Not provided'}
+                                    </div>
                                 ) : (
-                                    <FaSave />
+                                    <input
+                                        name={name}
+                                        value={formData[name]}
+                                        onChange={handleChange}
+                                        className="input input-bordered w-full mt-2 focus:ring-2 focus:ring-primary transition"
+                                    />
                                 )}
-                                Save
-                            </button>
+                            </div>
+                        ))}
+                    </div>
 
+                    {/* ACTIONS */}
+                    <div className="flex justify-center gap-4 mt-10">
+                        {!edit ? (
                             <button
-                                onClick={handleCancel}
-                                className="btn btn-outline btn-error gap-2"
-                                disabled={loading}
+                                onClick={() => setEdit(true)}
+                                className="btn btn-primary text-white gap-2 px-8 hover:scale-105 transition"
                             >
-                                <FaTimes /> Cancel
+                                <FaEdit /> Edit Profile
                             </button>
-                        </>
-                    )}
+                        ) : (
+                            <>
+                                <button
+                                    onClick={handleUpdate}
+                                    disabled={loading}
+                                    className="btn btn-primary text-white gap-2 px-10 hover:scale-105 transition"
+                                >
+                                    {loading ? (
+                                        <span className="loading loading-spinner"></span>
+                                    ) : (
+                                        <>
+                                            <FaSave /> Save Changes
+                                        </>
+                                    )}
+                                </button>
+
+                                <button
+                                    onClick={handleCancel}
+                                    disabled={loading}
+                                    className="btn btn-outline btn-error gap-2 px-8 hover:scale-105 transition"
+                                >
+                                    <FaTimes /> Cancel
+                                </button>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

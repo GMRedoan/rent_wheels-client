@@ -3,6 +3,7 @@ import {
   FaWhatsapp,
   FaLinkedinIn,
   FaFacebookF,
+  FaGithub,
 } from "react-icons/fa";
 import logo from '/logo.png'
 import { Link } from "react-router";
@@ -98,21 +99,21 @@ const Footer = () => {
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">Follow Us</h3>
               <div className="flex gap-3 items-center">
-                <a
+                <a href="https://github.com/GMRedoan"
                    className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:bg-white/10 transition"
                   aria-label="instagram"
                 >
-                  <FaInstagram className="text-gray-200" />
+                  <FaGithub className="text-gray-200" />
                 </a>
 
-                <a
+                <a href="https://api.whatsapp.com/send?phone=01764108600"
                    className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:bg-white/10 transition"
                   aria-label="whatsapp"
                 >
                   <FaWhatsapp className="text-gray-200" />
                 </a>
 
-                <a
+                <a href="https://www.linkedin.com/in/gm-redoan"
                    className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:bg-white/10 transition"
                   aria-label="linkedin"
                 >
@@ -120,6 +121,7 @@ const Footer = () => {
                 </a>
 
                 <a
+                href="https://www.facebook.com/gm.redoan"
                    className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:bg-white/10 transition"
                   aria-label="facebook"
                 >

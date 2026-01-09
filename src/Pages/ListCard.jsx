@@ -1,50 +1,71 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AuthContext } from "../provider/authContext";
 import Swal from "sweetalert2";
 
-const ListCard = ({ singleList, handleDelate }) => {
+const ListCard = ({ singleList, handleDelate, index }) => {
   const { user } = use(AuthContext)
-  const handleUpdate = (e) => {
-    e.preventDefault()
-    const form = e.target
-    const carName = form.carName.value
-    const carType = form.carType.value
-    const rentPricePerDay = form.rentPricePerDay.value
-    const location = form.location.value
-    const description = form.description.value
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    setIsUpdating(true);
+
+    const form = e.target;
     const updatedCar = {
-      carName, rentPricePerDay, carType, location, description
-    }
-    // update data in DB
-    fetch(`https://rent-wheels-server-jet.vercel.app/cars/${singleList._id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(updatedCar)
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.modifiedCount === 0) {
-          document.getElementById(`modal-${singleList._id}`).close()
-          return Swal.fire({
-            title: "Nothing is changed",
-            icon: "info",
-            confirmButtonColor: "#42A5F5",
-          })
+      carName: form.carName.value,
+      carType: form.carType.value,
+      rentPricePerDay: form.rentPricePerDay.value,
+      location: form.location.value,
+      description: form.description.value,
+    };
+
+    try {
+      const res = await fetch(
+        `https://rent-wheels-server-jet.vercel.app/cars/${singleList._id}`,
+        {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updatedCar),
         }
-        document.getElementById(`modal-${singleList._id}`).close()
+      );
+
+      const data = await res.json();
+
+      document.getElementById(`modal-${singleList._id}`).close();
+
+      if (data.modifiedCount === 0) {
         Swal.fire({
-          title: "Car Updated Successfully!",
-          icon: "success",
-          confirmButtonColor: "#67AB4F",
+          title: "Nothing is changed",
+          icon: "info",
+          confirmButtonColor: "#42A5F5",
         });
-      })
-  }
+        return;
+      }
+
+      Swal.fire({
+        title: "Car Updated Successfully!",
+        icon: "success",
+        confirmButtonColor: "#67AB4F",
+      });
+
+    } catch (error) {
+      console.log(error);
+
+      Swal.fire({
+        title: "Update failed",
+        text: "Something went wrong. Please try again.",
+        icon: "error",
+      });
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   return (
-    <tr>
-      <td className="md:pl-35 font-semibold text-base-300">{singleList.carName}</td>
+    <tr className="bg-base-200">
+      <td className="pl-6 md:pl-18">{index+1}</td>
+      <td className="font-semibold text-base-300">{singleList.carName}</td>
 
       <td className="text-base-300">{singleList.carType}</td>
 
@@ -176,8 +197,16 @@ const ListCard = ({ singleList, handleDelate }) => {
                 </div>
 
                 <div className="flex justify-center items-center gap-3 mt-3">
-                  <button type="submit" className="btn btn-primary hover:bg-secondary text-white px-14">
-                    Update Car
+                  <button
+                    type="submit"
+                    disabled={isUpdating}
+                    className="btn btn-primary hover:bg-secondary text-white px-14"
+                  >
+                    {isUpdating ? (
+                      <span className="loading loading-spinner loading-sm"></span>
+                    ) : (
+                      "Update Car"
+                    )}
                   </button>
                   <button
                     type="button"

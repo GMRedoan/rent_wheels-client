@@ -4,7 +4,7 @@ import { AuthContext } from '../provider/authContext';
 import Loading from '../Pages/Loading';
 import Aside from './Aside/Aside';
 import { FaBars } from "react-icons/fa";
-
+ 
 const DashBoardLayout = () => {
     const { loading } = useContext(AuthContext);
     const location = useLocation();
@@ -31,8 +31,7 @@ const DashBoardLayout = () => {
             >
                 <FaBars />
             </button>
-
-            <div>
+             <div>
                 <Aside openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
             </div>

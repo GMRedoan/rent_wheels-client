@@ -1,8 +1,9 @@
 import { NavLink, Link, useNavigate } from "react-router";
 import { FaHome, FaUser, FaSignOutAlt, FaUsers, FaListUl } from "react-icons/fa";
-import { IoBookmarks, IoDocuments } from "react-icons/io5";
+import { IoBookmarks } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
-import { MdDashboard } from "react-icons/md";
+import { PiAddressBookFill } from "react-icons/pi";
+import { MdDashboard, MdOutlineManageHistory } from "react-icons/md";
 import { use } from "react";
 import Swal from "sweetalert2";
 
@@ -38,8 +39,9 @@ const Aside = ({ openSidebar, setOpenSidebar }) => {
     const AdminMenuItems = [
         { path: "/dashboard", label: "Dashboard", icon: <MdDashboard /> },
         { path: "/dashboard/profile", label: "My Profile", icon: <FaUser /> },
-        { path: "/dashboard/all-users", label: "All Users", icon: <FaUsers /> },
-        { path: "/dashboard/all-bookings", label: "All Bookings", icon: <IoDocuments /> },
+        { path: "/dashboard/all-users", label: "User Management", icon: <FaUsers /> },
+        { path: "/dashboard/all-posting", label: "Post Management", icon: <MdOutlineManageHistory /> },
+        { path: "/dashboard/all-booking", label: "Booking Management", icon: <PiAddressBookFill/> },
     ]
 
 
@@ -102,7 +104,7 @@ const Aside = ({ openSidebar, setOpenSidebar }) => {
                         </li>
                     ))}
 
-                    <li className="mt-100 md:mt-50">
+                    <li className="mt-80 md:mt-40">
                         <Link
                             to="/"
                             className="flex items-center gap-3 py-2 px-4 rounded-md text-primary font-semibold hover:bg-base-200"

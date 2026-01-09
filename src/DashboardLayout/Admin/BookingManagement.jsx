@@ -1,20 +1,12 @@
-import React, { use, useEffect, useState } from 'react';
-import { AuthContext } from '../provider/authContext';
-import BookCard from './BookCard';
+import React, {useState } from 'react';
+import BookCard from '../../Pages/BookCard';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 
-const MyBooking = () => {
-  const { user } = use(AuthContext)
-  const [book, setBook] = useState([])
-  useEffect(() => {
-    fetch(`https://rent-wheels-server-jet.vercel.app/books?email=${user.email}`)
-      .then(res => res.json())
-      .then(data =>
-        setBook(data)
-      )
-  }, [user?.email])
-
+const BookingManagement = () => {
+    const loadedBooks = useLoaderData();  
+   const [book, setBook] = useState(loadedBooks)
+ 
   const handleCancel = (_id) => {
 
     Swal.fire({
@@ -60,19 +52,6 @@ const MyBooking = () => {
       });
   }
 
-  if (book.length === 0) {
-    return (
-      <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:min-h-120">
-        <p className="text-center text-accent font-semibold text-2xl">
-          You haven't booked any cars yet.
-        </p>
-        <Link to='/allCars' className='btn btn-primary text-white mt-5 hover:bg-secondary'>
-          Browse Car
-        </Link>
-      </div>
-    )
-  }
-
 
   return (
     <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:px-20">
@@ -80,7 +59,7 @@ const MyBooking = () => {
         My Bookings
       </title>
       <div className="pb-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-center pb-5">Your <span className='text-primary'>Bookings</span> Overview</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-center pb-5">All <span className='text-primary'>Bookings</span> Overview</h2>
         <p className="text-accent font-semibold text-center max-w-xl mx-auto">
           Easily manage and track all your current bookings.
         </p>
@@ -103,8 +82,8 @@ const MyBooking = () => {
             </thead>
 
             <tbody>
-              {book.map((singleList) => (
-                <BookCard key={singleList._id} singleList={singleList} handleCancel={handleCancel} />
+              {book.map((singleList, index) => (
+                <BookCard key={singleList._id} index={index} singleList={singleList} handleCancel={handleCancel} />
               ))}
             </tbody>
           </table>
@@ -114,4 +93,4 @@ const MyBooking = () => {
   );
 };
 
-export default MyBooking;
+export default BookingManagement;

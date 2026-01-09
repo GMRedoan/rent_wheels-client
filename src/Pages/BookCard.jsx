@@ -1,8 +1,9 @@
  
-const BookCard = ({ singleList, handleCancel }) => {
+const BookCard = ({ singleList, handleCancel, index }) => {
     return (
         <tr>
-            <td className="md:pl-25 font-semibold text-base-300">{singleList.carName}</td>
+            <td className="md:pl-15">{index+1}</td>
+            <td className="font-semibold text-base-300">{singleList.carName}</td>
 
             <td className="text-base-300">{singleList.carType}</td>
 

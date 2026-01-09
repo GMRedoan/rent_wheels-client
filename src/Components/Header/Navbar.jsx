@@ -70,7 +70,7 @@ const Navbar = () => {
                             <NavLink to='faq'><li>FAQ</li></NavLink>
                         </div>
                         <div className='flex items-center gap-1 text-xl'>
-                            <NavLink to='aboutUs'><li>About Us</li></NavLink>
+                            <NavLink to='aboutUs'><li>About </li></NavLink>
                         </div>
                     </ul>
                 </div>
@@ -94,7 +94,7 @@ const Navbar = () => {
                         <NavLink to='faq'><li>FAQ</li></NavLink>
                     </div>
                     <div className='flex items-center gap-1 text-xl'>
-                        <NavLink to='aboutUs'><li>About Us</li></NavLink>
+                        <NavLink to='aboutUs'><li>About </li></NavLink>
                     </div>
                 </ul>
             </nav>

@@ -2,7 +2,7 @@ import { FaCarSide, FaHeadset, FaMapMarkedAlt, FaShieldAlt } from "react-icons/f
 
 const Services = () => {
   return (
-    <section id="services-section" className="bg-base-200 py-20 pb-30">
+    <section id="services-section" className="bg-base-200 pb-30">
       {/* Heading */}
       <div className="text-center pb-16 px-4">
         <h2 data-aos="zoom-in" className="text-4xl md:text-5xl font-bold">
