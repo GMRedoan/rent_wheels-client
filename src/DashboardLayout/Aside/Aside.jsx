@@ -83,7 +83,7 @@ const Aside = ({ openSidebar, setOpenSidebar }) => {
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-73 bg-base-200 shadow-2xl p-5
+        className={`fixed top-0 left-0 z-50 h-full md:w-73 bg-base-200 shadow-2xl p-5
         transform transition-transform duration-300
         ${openSidebar ? "translate-x-0" : "-translate-x-full"}`}
       >

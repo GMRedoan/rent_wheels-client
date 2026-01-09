@@ -87,7 +87,7 @@ const Profile = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
+        <div className="min-h-screen bg-base-200 flex items-center justify-center px-6 pt-16">
 
             <div className="max-w-4xl w-full bg-base-100 rounded-3xl shadow-2xl overflow-hidden animate-fade-in">
 
