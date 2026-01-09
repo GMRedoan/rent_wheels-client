@@ -3,16 +3,24 @@ import { AuthContext } from '../provider/authContext';
 import ListCard from './ListCard';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
+import Loading from './Loading';
 
 const MyListing = () => {
   const { user } = use(AuthContext)
   const [list, setList] = useState([])
+  const [loading, setLoading] = useState(true);
+
+
   useEffect(() => {
+    setLoading(true);
     fetch(`https://rent-wheels-server-jet.vercel.app/cars?providerEmail=${user.email}`)
       .then(res => res.json())
       .then(data => {
         setList(data)
       })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [user?.email])
 
   //  delete data from listing
@@ -48,6 +56,10 @@ const MyListing = () => {
       });
   }
 
+  if (loading) {
+    return <Loading></Loading>
+  }
+
   if (list.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center py-10 pb-20 px-4 md:min-h-120">
@@ -55,7 +67,7 @@ const MyListing = () => {
           You haven't added any cars yet.
         </p>
         <Link to='/addCar' className='btn btn-primary text-white mt-5 hover:bg-secondary'>
-        Add Cars
+          Add Cars
         </Link>
       </div>
     )

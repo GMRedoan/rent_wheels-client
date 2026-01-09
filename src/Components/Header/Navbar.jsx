@@ -9,7 +9,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const { user, logout, userInfo} = use(AuthContext)
+    const { user, logout, userInfo } = use(AuthContext)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -98,44 +98,46 @@ const Navbar = () => {
                     </div>
                 </ul>
             </nav>
-            <div>
-                <Theme></Theme>
-            </div>
-            {
-                user ?
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="m-1">
-                            <img
-                                className="w-[42px] h-[42px] rounded-full cursor-pointer ring-2 ring-primary/40 hover:ring-primary transition"
-                                src={userInfo?.photoURL}
-                                alt="profile"
-                            />
+            <div className='flex items-center gap-3'>
+                <div>
+                    <Theme></Theme>
+                </div>
+                {
+                    user ?
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="m-1">
+                                <img
+                                    className="w-[42px] h-[42px] rounded-full cursor-pointer ring-2 ring-primary/40 hover:ring-primary transition"
+                                    src={userInfo?.photoURL}
+                                    alt="profile"
+                                />
+                            </div>
+
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content menu bg-base-100 rounded-xl shadow-lg border border-primary w-56 pb-4">
+                                <li className="pointer-events-none!">
+                                    <p className="font-semibold text-lg flex justify-center mb-3">{userInfo?.name}
+                                    </p>
+                                </li>
+                                <li>
+                                    <Link to='/dashboard/profile' className='btn btn-sm bg-gray-500 font-bold text-white rounded-xl hover:bg-gray-700'>Dashboard</Link>
+                                </li>
+
+                                <div className="divider my-1"></div>
+                                <li>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="btn btn-primary btn-sm text-white w-full rounded-xl shadow hover:bg-secondary">Log Out
+                                    </button>
+                                </li>
+
+                            </ul>
                         </div>
-
-                        <ul
-                            tabIndex={0}
-                            className="dropdown-content menu bg-base-100 rounded-xl shadow-lg border border-primary w-56 pb-4">
-                            <li className="pointer-events-none!">
-                                <p className="font-semibold text-lg flex justify-center mb-3">{userInfo?.name}
-                                </p>
-                            </li>
-                            <li>
-                                <Link to='/dashboard/profile' className='btn btn-sm bg-gray-500 font-bold text-white rounded-xl hover:bg-gray-700'>Dashboard</Link>
-                            </li>
-
-                            <div className="divider my-1"></div>
-                            <li>
-                                <button
-                                    onClick={handleLogout}
-                                    className="btn btn-primary btn-sm text-white w-full rounded-xl shadow hover:bg-secondary">Log Out
-                                </button>
-                            </li>
-
-                        </ul>
-                    </div>
-                    :
-                    <Link to='/login' className="btn btn-primary font-bold text-white hover:bg-secondary">Login / SignUp</Link>
-            }
+                        :
+                        <Link to='/login' className="btn btn-sm md:btn btn-primary font-bold text-white hover:bg-secondary">Login / SignUp</Link>
+                }
+            </div>
         </nav>
     );
 };

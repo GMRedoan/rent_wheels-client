@@ -11,14 +11,26 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state || "/";
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const fillAdmin = () => {
+        setEmail('admin@gmail.com');
+        setPassword('Admin12');
+    };
+
+    const fillUser = () => {
+        setEmail('redoangazi.f415@gmail.com');
+        setPassword('1234aS');
+    };
 
     // log in
     const handleLogin = (e) => {
-        e.preventDefault()
-        const form = e.target
-        const email = form.email.value
-        const password = form.password.value
-        setError('')
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
         Login(email, password)
             .then(() => {
                 Swal.fire({
@@ -26,14 +38,19 @@ const Login = () => {
                     icon: "success",
                     confirmButtonColor: "#67AB4F"
                 });
-                form.reset()
-                navigate(location.state || "/")
+                setEmail('');
+                setPassword('');
+                navigate(location.state || "/");
             })
             .catch(() => {
-                setError("Invalid Email or Password")
-                notify("Invalid Email or Password")
+                setError("Invalid Email or Password");
+                notify("Invalid Email or Password");
             })
-    }
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
     // google login
     const handleGoogle = () => {
         googleLogin()
@@ -69,6 +86,7 @@ const Login = () => {
             })
 
     }
+
     return (
         <div className="hero bg-base-200 py-20">
             <title>Login</title>
@@ -83,24 +101,65 @@ const Login = () => {
                     <div className="card-body">
                         <form onSubmit={handleLogin}>
                             <fieldset className="fieldset">
+
                                 <label>Email</label>
-                                <input type="email" className="input"
+                                <input
+                                    type="email"
+                                    className="input w-full"
                                     required
-                                    name='email'
-                                    placeholder="Email" />
+                                    name="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+
                                 {/* password */}
                                 <label>Password</label>
-                                <input type="password"
-                                    name='password'
-                                    className="input"
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="input w-full"
                                     required
-                                    placeholder="Password" />
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                                 {
                                     error && <p className='text-red-500'>{error}</p>
                                 }
-                                <button type='submit'
-                                    className="btn btn-primary mt-4 text-white 
-                                font-semibold hover:bg-secondary">Login Now</button>
+                                <div className="flex gap-2 mt-2">
+                                    <button
+                                        type="button"
+                                        onClick={fillAdmin}
+                                        className="btn btn-outline btn-sm w-1/2"
+                                    >
+                                        Login as Admin
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={fillUser}
+                                        className="btn btn-outline btn-sm w-40"
+                                    >
+                                        Login as User
+                                    </button>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className={`btn btn-primary mt-1 text-white font-semibold 
+    hover:bg-secondary ${loading ? 'cursor-not-allowed opacity-70' : ''}`}
+                                >
+                                    {loading ? (
+                                        <>
+                                            <span className="loading loading-spinner loading-sm"></span>
+                                            Logging in...
+                                        </>
+                                    ) : (
+                                        'Login Now'
+                                    )}
+                                </button>
 
                                 <button
                                     onClick={handleGoogle}

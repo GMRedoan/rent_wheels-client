@@ -105,7 +105,7 @@ const AllUser = () => {
 
 
     return (
-        <section className="p-6 md:p-10 min-h-screen bg-base-200">
+        <section className="p-6 md:px-22 min-h-screen bg-base-200">
 
             {/* PAGE HEADER */}
             <div className="my-10 animate-fade-in text-center">
